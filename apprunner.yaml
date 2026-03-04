@@ -14,6 +14,9 @@ run:
   command: pipenv run python app.py
   network: 
     port: 7860
+  env:
+    - name: GRADIO_SERVER_NAME
+      value: "0.0.0.0"
   secrets:
     - name: OPENAI_API_KEY
       value-from: "arn:aws:secretsmanager:us-east-1:335943193095:secret:prodSecrete-SxMLG8:OPENAI_API_KEY::"
