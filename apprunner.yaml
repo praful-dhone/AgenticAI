@@ -1,0 +1,23 @@
+version: 1.0
+runtime: python311
+build:
+  commands:
+    build:        
+      - pip3 install pipenv
+      - pipenv install
+run:
+  runtime-version: 3.11
+  pre-run:  
+    - pip3 install pipenv
+    - pipenv install
+    - pipenv install -r requirements.txt
+  command: pipenv run python app.py
+  network: 
+    port: 7860
+  secrets:
+    - name: OPENAI_API_KEY
+      value-from: "arn:aws:secretsmanager:us-east-1:335943193095:secret:prodSecrete-SxMLG8:OPENAI_API_KEY::"
+    - name: PUSHOVER_TOKEN
+      value-from: "arn:aws:secretsmanager:us-east-1:335943193095:secret:prodSecrete-SxMLG8:PUSHOVER_TOKEN::"
+    - name: PUSHOVER_USER
+      value-from: "arn:aws:secretsmanager:us-east-1:335943193095:secret:prodSecrete-SxMLG8:PUSHOVER_USER::"
